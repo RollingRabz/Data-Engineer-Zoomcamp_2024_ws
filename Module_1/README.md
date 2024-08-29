@@ -133,7 +133,7 @@ docker run -it \
 ```
 
 ## Running Postgres and pgAdmin with Docker-Compose
-From above, to connect 2 images together we have to created docker network. However, we can connect 2 docker images together without creating network by using yaml file
+From above, to connect 2 docker containers together we have to created docker network. However, we can connect 2 docker containers together without creating network by using yaml file
 
 Run docker using
 
