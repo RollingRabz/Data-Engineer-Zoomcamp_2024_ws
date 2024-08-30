@@ -1,1 +1,0 @@
-Simple Data pipeline using mage
