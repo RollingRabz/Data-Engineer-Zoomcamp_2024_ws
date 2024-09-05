@@ -252,3 +252,87 @@ For example 30/08/2024 - 01/09/2024 our server is down and data is not load on t
 In month 08 folder
 
 <img src="bf3.PNG" />
+
+### Deployment
+
+We can deploy mage using cloud run so we can use mage on website.
+
+  [Install Prerequisites](https://www.youtube.com/watch?v=zAwAX5sxqsg&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=29)
+  
+  [Google Cloud Permissions](https://www.youtube.com/watch?v=O_H7DCmq2rA&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=30)
+
+run
+
+```bash
+https://github.com/mage-ai/mage-ai-terraform-templates.git
+cd mage-ai-terraform-templates/gcp
+```
+
+add in main.tf
+
+```bash
+provider "google" {
+  credentials = file(var.credentials)
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
+}
+
+provider "google-beta" {
+  credentials = file(var.credentials)
+  project     = var.project_id
+  region      = var.region
+}
+```
+
+add in variables.tf
+
+```bash
+variable "credentials" {
+  description = "My Credentials"
+  default     = "path to credentials.json"
+
+}
+```
+
+enable google cloud API
+- Cloud Filestore API
+- Cloud SQL Admin API
+- Service Usage API
+If you are using free trial GCP
+- Delete load_balancer.tf
+- Remove code line 166 - 168
+```bash
+  # Display the service IP
+  output "service_ip" {
+    value = module.lb-http.external_ip
+    }
+```
+
+Run
+
+```bash
+terraform init
+```
+
+then
+
+```bash
+terraform apply
+```
+
+Time used to created is approximately 10-15 min
+Now we deploy mage on cloud run
+
+<img src="deploy.PNG" />
+
+To access mage using URL we have to config network first.
+- Networking > Ingress Control > change to ALL
+- Then access using url
+
+<img src="deploy_summary.PNG" />
+
+Now we can use mage on website and with git synch we can pull it to work locally and push it back to update the progress. 
+
+However, git synch is not cover in this module.
+
