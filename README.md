@@ -11,13 +11,11 @@ Git hub of Data Engineer Zoomcamp 2024 can be found [Here](https://github.com/Da
 * Docker and docker-compose
 * Running Postgres locally with Docker
 * Setting up infrastructure on GCP with Terraform
-* Preparing the environment for the course
 
 ### Module 2: Workflow Orchestration
 * Data Lake
 * Workflow orchestration
 * Workflow orchestration with Mage
-* Homework
 
 ### Module 3: Data Warehouse
 
