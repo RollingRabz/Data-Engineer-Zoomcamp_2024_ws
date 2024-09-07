@@ -16,3 +16,7 @@ OLTP vs OLAP
   <img src="DW.PNG" />
 
   # Patition and Clustering in BigQuery
+
+  <img src="partition.PNG" />
+
+  <img src="Cluster.PNG" />
