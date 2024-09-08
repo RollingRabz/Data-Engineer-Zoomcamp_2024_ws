@@ -80,7 +80,7 @@ OLTP vs OLAP
 
 ## Deploy ML Model
 
-1. move ML model to GCS bucket.
+1. Move ML model to GCS bucket.
 
 ```bash
 bq --project_id <gcp project id> extract -m ny_taxi.tip_model gs://<bucket name>/tip_model
