@@ -57,6 +57,10 @@ OLTP vs OLAP
   - Partition result in large numbecr that exceed limits.
   - Partition result in your mutation operations modifying the majority of partitions in the table frequently. (ex. every few minutes)
 
+## BigQuery Best practices
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/k81mLJVX08w)](https://youtu.be/k81mLJVX08w&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=36)
+
 ## Internal of BigQuery
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/eduHi1inM4s)](https://youtu.be/eduHi1inM4s&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=37)
