@@ -261,7 +261,7 @@ We can deploy mage using cloud run so we can use mage on website.
   
   [Google Cloud Permissions](https://www.youtube.com/watch?v=O_H7DCmq2rA&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=30)
 
-run
+Clone terraform template git
 
 ```bash
 https://github.com/mage-ai/mage-ai-terraform-templates.git
