@@ -279,7 +279,8 @@ models:
 
 * Commit all code to the main branch before running the job.
 
-- Deployment by
+## Deployment 
+
    - Create new environment  
 
 <img src="pic/new_env.PNG" />
