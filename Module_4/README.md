@@ -275,6 +275,7 @@ models:
 
 <img src="pic/lineage.PNG" />
 
+<img src="pic/last_prod.PNG" />
 
 * Commit all code to the main branch before running the job.
 
