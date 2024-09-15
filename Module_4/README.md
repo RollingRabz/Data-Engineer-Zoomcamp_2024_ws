@@ -301,3 +301,12 @@ If these criteria are met, the pull request will be approved; otherwise, it will
 
 ## Visualising the transformed data
 
+We can create data visualization using Looker studio from data that created from the previous step.
+
+- Create data source
+
+  - BigQuery as source
+  - The data from previous step will be saved in prod folder (name can be change in dbt environment).
+  - In this module we will use fact_trips to see the overview.
+ 
+  <img src="pic/vis.PNG" />
