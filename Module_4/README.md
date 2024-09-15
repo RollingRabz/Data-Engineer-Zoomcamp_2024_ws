@@ -1,11 +1,10 @@
-# Module_4: Analytics Engineering 
+# Module 4: Analytics Engineering 
 Goal: Transforming the data loaded in DWH into Analytical Views
 
 ### Prerequisites
-By this stage of the course you should have already: 
 
-- A running warehouse (BigQuery or postgres) 
-- A set of running pipelines ingesting the project dataset (week 3 completed)
+- A running warehouse (BigQuery will be use in this module) 
+- A set of running pipelines ingesting the project dataset (module 3 completed)
 - The following datasets ingested from the course [Datasets list](https://github.com/DataTalksClub/nyc-tlc-data/): 
   * Yellow taxi data - Years 2019 and 2020
   * Green taxi data - Years 2019 and 2020 
@@ -23,9 +22,41 @@ By this stage of the course you should have already:
 ### Introduction to analytics engineering
 
 * What is analytics engineering?
-* ETL vs ELT 
-* Data modeling concepts (fact and dim tables)
+  
+  <img src="ae.PNG" />
+  
+* ETL vs ELT
+  
+  - ETL
+    
+      - Slightly more stable and compliant data analysis
+  
+      - Higher storage and computing costs
 
+  - ELT
+  
+      - Faster and more flexible data analysis
+  
+      - Lower cost and lower maintenance
+
+
+* Data modeling concepts (fact and dim tables)
+  
+  - Facts tables
+    
+      - Measurements, metrics or facts
+    
+      - Corresponds to a business process
+    
+      - “verbs” ex. sales, orders
+   
+   - Dimensions tables
+     
+      - Corresponds to a business identity
+        
+      - Provides context to a business process
+        
+      - “nouns” ex. customer, product
 
 
 ### What is dbt? 
