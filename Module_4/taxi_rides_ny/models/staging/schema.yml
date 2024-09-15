@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: staging
-    database: mageai-434309
+    database: GCP-PJ-ID
     schema: trips_data_all
 
     tables:
