@@ -2,7 +2,7 @@
 
 What is Batch?
 
-    Batch is a processing a chunk of data at regular intervals.
+Batch is a processing a chunk of data at regular intervals.
 
 * Example of batch job
     - Weekly
