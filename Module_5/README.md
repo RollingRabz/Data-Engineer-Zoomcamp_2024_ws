@@ -175,3 +175,17 @@ df_result.coalesce(1).write.parquet('data/report/revenue/', mode='overwrite')
 ```
 
 coalesce will used to reduce to x partition.
+
+* Join
+
+Join using same column name
+
+ ```bash
+df_join = df_green_revenue_tmp.join(df_yellow_revenue_tmp, on=['hour', 'zone'], how='outer')
+```
+
+Join using the same column but different name
+
+ ```bash
+df_result = df_join.join(df_zones, df_join.zone == df_zones.LocationID)
+```
