@@ -1,6 +1,6 @@
 # Batch processing with Spark
 
-What is Batch?
+## What is Batch?
 
 Batch is a processing a chunk of data at regular intervals.
 
@@ -22,7 +22,7 @@ Batch is a processing a chunk of data at regular intervals.
     - Delay
         - If we have hourly job but the process time took 15 min so we wiil get data every 1 hour 15 minutes.
 
-What is Spark?
+## What is Spark?
 
 Spark is Data processing engine which have 2 types which are Batch jobs and streaming
 
@@ -66,7 +66,7 @@ spark = SparkSession.builder \
     .appName('test') \
     .getOrCreate()
 ```
-Basic Command
+## Basic Command
 
 * Read file
   
@@ -189,3 +189,5 @@ Join using the same column but different name
  ```bash
 df_result = df_join.join(df_zones, df_join.zone == df_zones.LocationID)
 ```
+
+## Resilient Distributed Datasets
