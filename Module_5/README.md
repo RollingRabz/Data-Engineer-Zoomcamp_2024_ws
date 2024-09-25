@@ -22,6 +22,16 @@ Batch is a processing a chunk of data at regular intervals.
     - Delay
         - If we have hourly job but the process time took 15 min so we wiil get data every 1 hour 15 minutes.
 
+What is Spark?
+
+Spark is Data processing engine which have 2 types which are Batch jobs and streaming
+
+* When to use
+    - Process big data
+        - Spark divided data into partitions so instead of 1 core process 1 file, it will divide the data into partitions and process simultaneously.
+    - Hard to express using SQL alone.
+ 
+Install spark locally [HERE!](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/05-batch/setup)
 
 In this Module I run spark locally on my pc.
 
@@ -56,3 +66,112 @@ spark = SparkSession.builder \
     .appName('test') \
     .getOrCreate()
 ```
+Basic Command
+
+* Read file
+  
+```bash
+spark.read \
+    .option("header", "true") \
+    .csv('filename')
+
+spark.read \
+    .option("header", "true") \
+    .parquet('filename')
+```
+
+* Create dataframe from pandas
+  
+```bash
+spark.createDataFrame(df_pandas)
+```
+
+* Change column data type
+
+```bash
+from pyspark.sql import types
+schema = types.StructType([
+    types.StructField('hvfhs_license_num', types.StringType(), True),
+    types.StructField('dispatching_base_num', types.StringType(), True),
+    types.StructField('pickup_datetime', types.TimestampType(), True),
+    types.StructField('dropoff_datetime', types.TimestampType(), True),
+    types.StructField('PULocationID', types.IntegerType(), True),
+    types.StructField('DOLocationID', types.IntegerType(), True),
+    types.StructField('SR_Flag', types.StringType(), True)
+])
+```
+
+* Divided data into partitions
+
+```bash
+df = spark.read \
+    .option("header", "true") \
+    .schema(schema) \
+    .csv('fhvhv_tripdata_2021-01.csv')
+df = df.repartition(24)
+df.write.parquet('fhvhv/2021/01/')
+```
+
+Here we read csv file then define that this data must be divided to 24 partitions and save as parquet file. 
+
+The result will be save in parquet format with 24 files.
+
+* Used python expression in spark
+
+```bash
+from pyspark.sql import functions as F
+
+def crazy_stuff(base_num):
+    num = int(base_num[1:])
+    if num % 7 == 0:
+        return f's/{num:03x}'
+    elif num % 3 == 0:
+        return f'a/{num:03x}'
+    else:
+        return f'e/{num:03x}'
+
+crazy_stuff_udf = F.udf(crazy_stuff, returnType=types.StringType())
+
+df \
+    .withColumn('pickup_date', F.to_date(df.pickup_datetime)) \
+    .withColumn('dropoff_date', F.to_date(df.dropoff_datetime)) \
+    .withColumn('base_id', crazy_stuff_udf(df.dispatching_base_num)) \
+    .select('base_id', 'pickup_date', 'dropoff_date', 'PULocationID', 'DOLocationID') \
+    .show()
+```
+
+<img src="pic/udf.PNG" />
+
+* Using SQL query in spark 
+
+Transform dataframe 'df_trips_data' to table name 'trips_data'
+
+```bash
+df_trips_data.registerTempTable('trips_data')
+```
+
+Now SQL query
+
+```bash
+spark.sql("""
+SELECT
+    service_type,
+    count(1)
+FROM
+    trips_data
+GROUP BY 
+    service_type
+""").show()
+```
+
+<img src="pic/query.PNG" />
+
+* Reduce partition of saved file
+
+Sometimes when we save a result to a file it may result in too many partitions with small sizes which may cause reshuffling size problem.
+
+```bash
+df_result.coalesce(1).write.parquet('data/report/revenue/', mode='overwrite')
+```
+
+coalesce will used to reduce to x partition.
