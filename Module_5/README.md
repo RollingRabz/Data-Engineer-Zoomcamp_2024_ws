@@ -190,11 +190,11 @@ Join using the same column but different name
 df_result = df_join.join(df_zones, df_join.zone == df_zones.LocationID)
 ```
 
-## Creating a Local Spark Cluster
-
-## Setting up a Dataproc Cluster
+## Using Spark on cloud
 
 We can use Cloud resource to run spark job instead of local resource.
+
+### Setting up a Dataproc Cluster
 
 * Enable dataproc API
 * Create cluster
@@ -204,7 +204,7 @@ We can use Cloud resource to run spark job instead of local resource.
     
 This process will create another GCS bucket as temporary bucket and another instance in VM.
 
-## Connect Spark to Google Cloud Storage
+### Connect Spark to Google Cloud Storage
 
 Read file from GCS to do Spark jobs [code](09_spark_gcs.ipynb)
 
@@ -223,7 +223,7 @@ gcloud dataproc jobs submit pyspark \
         --output=gs://<bucket name>/report-2020
 ```
 
-## Connecting Spark to Big Query
+### Connecting Spark to Big Query
 
 Must add jars package and temporary GCS Bucket First in order to connect to BigQuery
 
