@@ -190,10 +190,61 @@ Join using the same column but different name
 df_result = df_join.join(df_zones, df_join.zone == df_zones.LocationID)
 ```
 
-## Connect Spark to Google Cloud Storage
-
 ## Creating a Local Spark Cluster
 
 ## Setting up a Dataproc Cluster
 
+We can use Cloud resource to run spark job instead of local resource.
+
+* Enable dataproc API
+* Create cluster
+  - Create on Compute Engine
+  - Region must be the same with GCS
+  - Cluster type > Single node
+    
+This process will create another GCS bucket as temporary bucket and another instance in VM.
+
+## Connect Spark to Google Cloud Storage
+
+Read file from GCS to do Spark jobs [code](09_spark_gcs.ipynb)
+
+* Must create Google_credentials files in google cloud first.
+
+Running spark job using google cloud resource then save to GCS [code](06_spark_sql.py)
+
+```bash
+gcloud dataproc jobs submit pyspark \
+    --cluster=de-zoomcamp-cluster \
+    --region=asia-southeast1 \
+    gs://<bucket name>/code/06_spark_sql_big_query.py \
+    -- \
+        --input_green=gs://<bucket name>/pq/green/2020/*/ \
+        --input_yellow=gs://<bucket name>/pq/yellow/2020/*/ \
+        --output=gs://<bucket name>/report-2020
+```
+
 ## Connecting Spark to Big Query
+
+Must add jars package and temporary GCS Bucket First in order to connect to BigQuery
+
+```bash
+spark = SparkSession.builder \
+    .appName('test') \
+    .config("spark.jars.packages", "com.google.cloud.spark:spark-bigquery-with-dependencies_2.12:0.23.2") \
+    .getOrCreate()
+
+spark.conf.set('temporaryGcsBucket', 'dataproc-temp-asia-southeast1-355180390910-i9e7zgqu')
+```
+
+Submit job using 
+
+```bash
+gcloud dataproc jobs submit pyspark \
+    --cluster=de-zoomcamp-cluster \
+    --region=asia-southeast1 \
+    gs://<bucket name>/code/06_spark_sql_big_query.py \
+    -- \
+        --input_green=gs://<bucket name>/pq/green/2020/*/ \
+        --input_yellow=gs://<bucket name>/pq/yellow/2020/*/ \
+        --output=trips_data_all.reports-2020
+```
