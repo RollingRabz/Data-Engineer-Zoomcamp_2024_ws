@@ -190,4 +190,10 @@ Join using the same column but different name
 df_result = df_join.join(df_zones, df_join.zone == df_zones.LocationID)
 ```
 
-## Resilient Distributed Datasets
+## Connect Spark to Google Cloud Storage
+
+## Creating a Local Spark Cluster
+
+## Setting up a Dataproc Cluster
+
+## Connecting Spark to Big Query
