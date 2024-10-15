@@ -82,7 +82,21 @@ How does the consumer know which message to consume, and how does Kafka know tha
 
 all: Success if both leader and follower physically received the message. (Slowest)
 
+## How message store in each partitions
 
+* Key %(modulo) num of partitions
+
+  This may cause some partition to have more message than other (skewed prob) if some key have more duplicate. Ex. use location as key Airport, School, Police dept,....
+
+* If key = null then use round robin method(0 > 1 > 0 > 1 .....)
+
+## Kafka stream join
+
+Both topic must have the same number of partitions to prevent keys mismatch.
+
+## Global KTable
+
+The concept is similar to Spark's broadcast, where a small file is sent to every node without incurring any reshuffling costs.
 
 
 
