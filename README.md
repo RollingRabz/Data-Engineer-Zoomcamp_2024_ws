@@ -51,5 +51,3 @@ Git hub of Data Engineer Zoomcamp 2024 can be found [Here](https://github.com/Da
 * Schemas (avro)
 * Kafka Streams
 * Kafka Connect and KSQL
-
-### Workshop 2: Stream Processing with SQL
